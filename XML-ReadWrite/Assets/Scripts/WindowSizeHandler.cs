@@ -18,11 +18,14 @@ namespace SerializedXML.Settings
 
 		[Header("Component References")] 
 		[SerializeField]
+		private RectTransform windowTransform;
+		
+		[SerializeField]
 		private TextMeshProUGUI windowSizeText;
 		
 		[SerializeField]
-		private RectTransform windowTransform;
-
+		private TMP_Dropdown windowSizeDropdown;
+		
 		[Header("Window Sizes")]
 		[SerializeField]
 		private string largeWindowText = "Large Window";
@@ -55,13 +58,13 @@ namespace SerializedXML.Settings
 	
 		#region Unity Methods
 
-		private void OnEnable() => settingsEvents.OnWindowSizeApplied += OnWindowSizeChanged;
+		private void OnEnable() => settingsEvents.OnWindowSizeApplied += OnWindowSizeApplied;
 
-		private void OnDisable() => settingsEvents.OnWindowSizeApplied -= OnWindowSizeChanged;
+		private void OnDisable() => settingsEvents.OnWindowSizeApplied -= OnWindowSizeApplied;
 
 		#endregion
 	
-		private void OnWindowSizeChanged(ApplicationData.WindowSize size)
+		private void OnWindowSizeApplied(ApplicationData.WindowSize size)
 		{
 			switch (size)
 			{
@@ -76,6 +79,11 @@ namespace SerializedXML.Settings
 					break;
 				default:
 					break;
+			}
+
+			if (windowSizeDropdown != null && windowSizeDropdown.value != (int)size)
+			{
+				windowSizeDropdown.value = (int) size;
 			}
 
 			void SetSmallWindowSize()
