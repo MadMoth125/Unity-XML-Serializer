@@ -10,14 +10,14 @@ namespace SerializedXML.Data
 		// constructor
 		public ApplicationData(Theme theme, Language language, WindowSize size)
 		{
-			AppTheme = theme;
-			AppLanguage = language;
-			AppWindowSize = size;
+			appTheme = theme;
+			appLanguage = language;
+			appWindowSize = size;
 		}
-		
-		public Theme AppTheme { get; private set; }
-		public Language AppLanguage { get; private set; }
-		public WindowSize AppWindowSize { get; private set; }
+
+		public Theme appTheme;
+		public Language appLanguage;
+		public WindowSize appWindowSize;
 
 		/// <summary>
 		/// Simple enum to represent the color theme of the application.
