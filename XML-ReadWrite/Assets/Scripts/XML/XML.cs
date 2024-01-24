@@ -12,22 +12,23 @@ namespace SerializedXML.Serializer
 	/// </summary>
 	public class XML
 	{
+		private const string _fileName = "ApplicationData.xml";
+		
 		/// <summary>
 		/// Serializes an object and saves it to a file in XML format.
 		/// </summary>
-		/// <param name="fileName">The file name of the serialized object (ex. filename.xml)</param>
 		/// <param name="data">The type of object to serialize (Person, Product, etc.)</param>
 		/// <typeparam name="T"></typeparam>
-		public static void SerializeAndSave<T>(string fileName, T data)
+		public static void SerializeAndSave<T>(T data)
 		{
 			XmlSerializer serializer = new XmlSerializer(typeof(T));
-			using (StreamWriter streamWriter = new StreamWriter(fileName))
+			using (StreamWriter streamWriter = new StreamWriter(_fileName))
 			{
 				serializer.Serialize(streamWriter, data);
 			}
 		}
 
-		public static bool DeserializeAndLoad<T>(string fileName, out T result)
+		public static bool DeserializeAndLoad<T>(out T result)
 		{
 			bool success = true;
 			result = default(T);
@@ -35,10 +36,10 @@ namespace SerializedXML.Serializer
 			{
 				try
 				{
-					if (File.Exists(fileName))
+					if (File.Exists(_fileName))
 					{
 						XmlSerializer serializer = new XmlSerializer(typeof(T));
-						using (StreamReader streamReader = new StreamReader(fileName))
+						using (StreamReader streamReader = new StreamReader(_fileName))
 						{
 							result = (T)serializer.Deserialize(streamReader);
 						}
