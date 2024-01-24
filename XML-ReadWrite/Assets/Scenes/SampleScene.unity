@@ -5452,6 +5452,7 @@ GameObject:
   - component: {fileID: 2005700643}
   - component: {fileID: 2005700642}
   - component: {fileID: 2005700641}
+  - component: {fileID: 2005700644}
   m_Layer: 0
   m_Name: Settings Selection Manager
   m_TagString: Untagged
@@ -5505,6 +5506,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2005700644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005700640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95edd02b75badc4469a65cd9c85ce513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshProLanguageTexts:
+  - {text: {fileID: 0}, textLanguage:
+      language: 0
+      languages:
+      - 
+}
 --- !u!1 &2074526391
 GameObject:
   m_ObjectHideFlags: 0
