@@ -18,12 +18,12 @@ namespace SerializedXML.Settings
 		[Header("Event References")]
 		[SerializeField]
 		private SettingsEvents settingsEvents;
-		
+
 		// private currents
 		private ApplicationData.WindowSize appWindowSize;
 		private ApplicationData.Language appLanguage;
 		private ApplicationData.Theme appTheme;
-	
+
 		#region Unity Methods
 
 		private void OnEnable()
@@ -92,7 +92,15 @@ namespace SerializedXML.Settings
 
 		private void OnSettingsReverted()
 		{
+			settingsEvents.ChangeWindowSize(DefaultWindowSize);
+			settingsEvents.ChangeLanguage(DefaultLanguage);
+			settingsEvents.ChangeTheme(DefaultTheme);
 			
+			settingsEvents.ApplyWindowSize(DefaultWindowSize);
+			settingsEvents.ApplyLanguage(DefaultLanguage);
+			settingsEvents.ApplyTheme(DefaultTheme);
+				
+			Debug.Log("Loaded default settings.");
 		}
 	}
 }
