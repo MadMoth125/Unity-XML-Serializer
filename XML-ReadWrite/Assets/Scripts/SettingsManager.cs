@@ -37,25 +37,27 @@ namespace SerializedXML.Settings
 			
 			if (XML.DeserializeAndLoad(out ApplicationData data))
 			{
-				settingsEvents.ChangeWindowSize(data.AppWindowSize);
-				settingsEvents.ApplyWindowSize(data.AppWindowSize);
+				settingsEvents.ChangeWindowSize(data.appWindowSize);
+				settingsEvents.ChangeLanguage(data.appLanguage);
+				settingsEvents.ChangeTheme(data.appTheme);
 				
-				settingsEvents.ChangeLanguage(data.AppLanguage);
-				settingsEvents.ApplyLanguage(data.AppLanguage);
+				settingsEvents.ApplyWindowSize(data.appWindowSize);
+				settingsEvents.ApplyLanguage(data.appLanguage);
+				settingsEvents.ApplyTheme(data.appTheme);
 				
-				settingsEvents.ChangeTheme(data.AppTheme);
-				settingsEvents.ApplyTheme(data.AppTheme);
+				Debug.Log("Loaded settings from file.");
 			}
 			else
 			{
 				settingsEvents.ChangeWindowSize(DefaultWindowSize);
-				settingsEvents.ApplyWindowSize(DefaultWindowSize);
-				
 				settingsEvents.ChangeLanguage(DefaultLanguage);
-				settingsEvents.ApplyLanguage(DefaultLanguage);
-				
 				settingsEvents.ChangeTheme(DefaultTheme);
+				
+				settingsEvents.ApplyWindowSize(DefaultWindowSize);
+				settingsEvents.ApplyLanguage(DefaultLanguage);
 				settingsEvents.ApplyTheme(DefaultTheme);
+				
+				Debug.Log("Loaded default settings.");
 			}
 		}
 
@@ -80,6 +82,8 @@ namespace SerializedXML.Settings
 		private void OnSettingsApplied()
 		{
 			XML.SerializeAndSave(new ApplicationData(appTheme, appLanguage, appWindowSize));
+			
+			Debug.Log("Saved settings to file.");
 			
 			settingsEvents.ApplyTheme(appTheme);
 			settingsEvents.ApplyLanguage(appLanguage);
